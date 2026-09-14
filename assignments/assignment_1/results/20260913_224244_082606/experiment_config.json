@@ -1,0 +1,21 @@
+{
+  "research_question": "Does using crossover improve the performance of an evolutionary algorithm for evolving robot body phenotypes compared with mutation-only evolution?",
+  "encoding": "tree",
+  "module_budget_argument": 20,
+  "maximum_total_nodes": 21,
+  "population_size": 50,
+  "generations": 100,
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "tournament_size": 3,
+  "crossover_probability": 0.8,
+  "mutation_probability_per_child": 1.0,
+  "evaluation_budget_per_run": 5050,
+  "fitness_direction": "minimisation",
+  "fitness": "mean target tree-edit distance + standard deviation"
+}

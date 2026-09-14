@@ -1,0 +1,127 @@
+{
+  "nodes": {
+    "0": {
+      "type": "CORE",
+      "rotation": "DEG_0"
+    },
+    "1": {
+      "type": "HINGE",
+      "rotation": "DEG_0"
+    },
+    "2": {
+      "type": "BRICK",
+      "rotation": "DEG_90"
+    },
+    "3": {
+      "type": "BRICK",
+      "rotation": "DEG_0"
+    },
+    "10": {
+      "type": "BRICK",
+      "rotation": "DEG_0"
+    },
+    "22": {
+      "type": "HINGE",
+      "rotation": "DEG_0"
+    },
+    "24": {
+      "type": "HINGE",
+      "rotation": "DEG_45"
+    },
+    "6": {
+      "type": "HINGE",
+      "rotation": "DEG_0"
+    },
+    "25": {
+      "type": "HINGE",
+      "rotation": "DEG_0"
+    },
+    "11": {
+      "type": "HINGE",
+      "rotation": "DEG_0"
+    },
+    "26": {
+      "type": "HINGE",
+      "rotation": "DEG_45"
+    },
+    "27": {
+      "type": "BRICK",
+      "rotation": "DEG_0"
+    },
+    "28": {
+      "type": "BRICK",
+      "rotation": "DEG_90"
+    },
+    "29": {
+      "type": "BRICK",
+      "rotation": "DEG_0"
+    }
+  },
+  "edges": [
+    {
+      "parent": 0,
+      "child": 1,
+      "face": "BACK"
+    },
+    {
+      "parent": 0,
+      "child": 2,
+      "face": "FRONT"
+    },
+    {
+      "parent": 2,
+      "child": 3,
+      "face": "TOP"
+    },
+    {
+      "parent": 3,
+      "child": 10,
+      "face": "LEFT"
+    },
+    {
+      "parent": 2,
+      "child": 22,
+      "face": "LEFT"
+    },
+    {
+      "parent": 1,
+      "child": 24,
+      "face": "FRONT"
+    },
+    {
+      "parent": 3,
+      "child": 6,
+      "face": "BOTTOM"
+    },
+    {
+      "parent": 10,
+      "child": 25,
+      "face": "TOP"
+    },
+    {
+      "parent": 3,
+      "child": 11,
+      "face": "TOP"
+    },
+    {
+      "parent": 2,
+      "child": 26,
+      "face": "FRONT"
+    },
+    {
+      "parent": 10,
+      "child": 27,
+      "face": "BOTTOM"
+    },
+    {
+      "parent": 0,
+      "child": 28,
+      "face": "LEFT"
+    },
+    {
+      "parent": 28,
+      "child": 29,
+      "face": "BOTTOM"
+    }
+  ]
+}

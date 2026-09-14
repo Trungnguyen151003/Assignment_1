@@ -8,6 +8,8 @@
         "tests/**/*.py",
     ],
     "stubPath": ".typings",
+    "reportMissingTypeArgument": false,
+    "reportUnknownParameterType": false,
     // -------------------------------------------------------------------- //
     // TODO: MuJoCo
     "reportArgumentType": false,
