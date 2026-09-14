@@ -14,6 +14,98 @@ ARIEL is a research framework, developed by the [Computational Intelligence Grou
 This is the ARIEL fork for the Evolutionary Computing course, 2026 edition. Course assignment
 materials will be added into `/assignments` as the course progresses.
 
+## Quick installation on Windows
+
+The project uses [uv](https://docs.astral.sh/uv/) to create the local `.venv`,
+install the required Python version, and install all dependencies declared in
+`pyproject.toml`. Run the commands from the repository root. You do not need
+to activate `.venv` or install packages with `pip` when using `uv run`.
+
+### PowerShell
+
+Install `uv` if it is not already available:
+
+```powershell
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+```
+
+Close and reopen PowerShell after a first-time installation, then enter the
+repository and install the project dependencies:
+
+```powershell
+cd "C:\path\to\EvolutionaryComputing2026"
+uv --version
+uv sync
+```
+
+If the repository was moved or renamed while a virtual environment was active,
+clear the stale environment variable before running `uv`:
+
+```powershell
+Remove-Item Env:VIRTUAL_ENV -ErrorAction SilentlyContinue
+uv sync
+```
+
+### Git Bash
+
+Install `uv` if it is not already available:
+
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+Close and reopen Git Bash after a first-time installation, then enter the
+repository and install the project dependencies:
+
+```bash
+cd "/path/to/EvolutionaryComputing2026"
+uv --version
+uv sync
+```
+
+If the repository was moved or renamed while a virtual environment was active,
+clear the stale environment before running `uv`:
+
+```bash
+deactivate 2>/dev/null || true
+unset VIRTUAL_ENV
+uv sync
+```
+
+Do not use `uv run --active` when `VIRTUAL_ENV` points to an old repository
+location. Let `uv` use the project-local `.venv` instead.
+
+### Confirm that the installation works
+
+First verify that the main dependencies can be imported:
+
+```bash
+uv run python -c "import ariel, mujoco, networkx, numpy; print('Installation OK')"
+```
+
+Expected output:
+
+```text
+Installation OK
+```
+
+For Assignment 1, run the supplied smoke test from the repository root:
+
+```bash
+uv run assignments/assignment_1/A1_template_2026.py
+```
+
+A successful run reports `encoding: tree`, loads five target bodies, prints a
+finite fitness value, and saves a rendered robot image at:
+
+```text
+__data__/A1_template_2026/random_tree.png
+```
+
+The fitness value and random robot may vary when the seed is changed. A finite
+fitness and a saved image confirm that Python, ARIEL, NetworkX, MuJoCo, the
+assignment data, and the renderer are working together.
+
 ## Overview
 
 **ARIEL** is a research framework for the evolution and learning of modular robots. It couples an evolutionary computation (EC) engine with a [MuJoCo](https://mujoco.org/)-based simulation stack, allowing robot *bodies* (morphologies) and *brains* (controllers) to be co-evolved and optimised within a single, consistent pipeline.
