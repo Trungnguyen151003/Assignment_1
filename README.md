@@ -75,6 +75,62 @@ uv sync
 Do not use `uv run --active` when `VIRTUAL_ENV` points to an old repository
 location. Let `uv` use the project-local `.venv` instead.
 
+### macOS
+
+These instructions work for both Apple Silicon (`arm64`) and Intel
+(`x86_64`) Macs. macOS 13 or newer is recommended.
+
+Install Apple's command-line tools, which provide Git and build utilities:
+
+```bash
+xcode-select --install
+git --version
+```
+
+Install `uv` using the official installer:
+
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+Close and reopen Terminal after a first-time installation. Alternatively, if
+the installer asks you to update the current shell, run:
+
+```bash
+source $HOME/.local/bin/env
+```
+
+Homebrew users may install `uv` with `brew install uv` instead. Use only one
+installation method. Then enter the repository and install the locked project
+dependencies:
+
+```bash
+cd /path/to/EvolutionaryComputing2026
+uv --version
+uv sync --frozen
+```
+
+Do not copy or reuse a Windows `.venv` on macOS. A virtual environment contains
+platform-specific Python executables and packages. If the project was copied
+from Windows and includes its `.venv`, rename that environment before syncing:
+
+```bash
+mv .venv .venv.windows-backup
+uv sync --frozen
+```
+
+If an unrelated virtual environment is active, clear it first:
+
+```bash
+deactivate 2>/dev/null || true
+unset VIRTUAL_ENV
+uv sync --frozen
+```
+
+Activation is not required when commands are run with `uv run`. When using VS
+Code on macOS, select `.venv/bin/python` with **Python: Select Interpreter**;
+the Windows path `.venv/Scripts/python.exe` does not work on macOS.
+
 ### Confirm that the installation works
 
 First verify that the main dependencies can be imported:
@@ -105,6 +161,55 @@ __data__/A1_template_2026/random_tree.png
 The fitness value and random robot may vary when the seed is changed. A finite
 fitness and a saved image confirm that Python, ARIEL, NetworkX, MuJoCo, the
 assignment data, and the renderer are working together.
+
+On macOS, the complete installation check is:
+
+```bash
+uv run python --version
+uv run python -c 'import ariel, mujoco, networkx, numpy; print("Installation OK")'
+uv run assignments/assignment_1/A1_template_2026.py
+open __data__/A1_template_2026/random_tree.png
+```
+
+### Run the full Assignment 1 experiment and create plots
+
+Run all configured seeds for mutation-only evolution, crossover evolution, and
+the random-search baseline from the repository root:
+
+```bash
+uv run assignments/assignment_1/a1_run_experiments.py
+```
+
+The runner creates a new timestamped directory under
+`assignments/assignment_1/results/` and prints its exact `results.csv` path.
+Use that printed path when creating the plots, for example:
+
+```bash
+uv run assignments/assignment_1/a1_plot_results.py \
+  "assignments/assignment_1/results/20260916_185625_639144/results.csv"
+```
+
+On macOS, the latest result directory can also be selected automatically:
+
+```bash
+RESULT_DIR=$(ls -dt assignments/assignment_1/results/*/ | head -n 1)
+uv run assignments/assignment_1/a1_plot_results.py "$RESULT_DIR/results.csv"
+```
+
+The plotting command creates `best_fitness.png`, `mean_fitness.png`,
+`std_fitness.png`, and `final_summary.csv` in the same result directory. Open
+them on macOS with:
+
+```bash
+open "$RESULT_DIR/best_fitness.png"
+open "$RESULT_DIR/mean_fitness.png"
+open "$RESULT_DIR/std_fitness.png"
+open "$RESULT_DIR/final_summary.csv"
+```
+
+If `RESULT_DIR` was not set, replace it with the timestamped directory printed
+by the experiment runner. Do not mix a new `results.csv` with plots or summaries
+from an older result directory.
 
 ## Overview
 
