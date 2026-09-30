@@ -1,12 +1,8 @@
-"""Run both EA variants and the random-search baseline over all seeds."""
-
 from __future__ import annotations
-
 import json
 from datetime import datetime
 from pathlib import Path
 from typing import Any, cast
-
 from a1_config import (
     CROSSOVER_PROBABILITY,
     EA_VARIANTS,
@@ -22,20 +18,15 @@ from a1_config import (
 from a1_ea import EAVariant, run_ea
 from a1_random_search import run_random_search
 
-
 type RunSummary = dict[str, float | int | str]
 
-
 def create_result_directory() -> Path:
-    """Create a unique directory so previous experiments are not overwritten."""
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
     result_dir = RESULTS_ROOT / timestamp
     result_dir.mkdir(parents=True, exist_ok=False)
     return result_dir
 
-
 def save_experiment_configuration(result_dir: Path) -> None:
-    """Store the settings needed to reproduce the experiment."""
     configuration: dict[str, Any] = {
         "research_question": (
             "Does using crossover improve the performance of an evolutionary "
@@ -58,18 +49,14 @@ def save_experiment_configuration(result_dir: Path) -> None:
     path = result_dir / "experiment_config.json"
     path.write_text(json.dumps(configuration, indent=2), encoding="utf-8")
 
-
 def print_summary(summary: RunSummary) -> None:
-    """Print a concise completion line for one run."""
     print(
         f"{summary['variant']}, seed={summary['seed']}, "
         f"best={float(summary['best_fitness']):.4f}, "
         f"evaluations={summary['evaluations']}",
     )
 
-
 def main() -> None:
-    """Run 2 EA variants and random search using identical seed sets."""
     result_dir = create_result_directory()
     csv_path = result_dir / "results.csv"
     save_experiment_configuration(result_dir)
@@ -95,7 +82,6 @@ def main() -> None:
         "uv run assignments/assignment_1/a1_plot_results.py "
         f'"{csv_path}"',
     )
-
 
 if __name__ == "__main__":
     main()

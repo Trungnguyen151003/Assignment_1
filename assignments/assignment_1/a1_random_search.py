@@ -1,31 +1,17 @@
-"""Equal-evaluation-budget random-search baseline."""
-
 from __future__ import annotations
-
 import copy
 from pathlib import Path
 from statistics import fmean, pstdev
-
 from a1_common import append_result, calculate_fitness, random_genome, set_seed
 from a1_config import GENERATIONS, POPULATION_SIZE
 
-
 type RunSummary = dict[str, float | int | str]
 
-
-def run_random_search(
-    seed: int,
-    result_dir: Path,
-    csv_path: Path,
-) -> RunSummary:
-    """Sample random bodies using exactly the same budget as one EA run."""
+def run_random_search(seed: int, result_dir: Path, csv_path: Path) -> RunSummary:
     set_seed(seed)
     best_genome = None
     best_fitness = float("inf")
     evaluations = 0
-
-    # Generation 0 matches the EA's initial population. Every later checkpoint
-    # adds the same number of evaluations as one EA generation.
     for generation in range(GENERATIONS + 1):
         batch_fitness: list[float] = []
         for _ in range(POPULATION_SIZE):

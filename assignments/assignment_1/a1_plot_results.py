@@ -1,18 +1,12 @@
-"""Aggregate independent runs, create plots, and summarize final fitness."""
-
 from __future__ import annotations
-
 import argparse
 import csv
 from collections import defaultdict
 from pathlib import Path
 from statistics import fmean, pstdev
 from typing import Any
-
 import matplotlib.pyplot as plt
-
 from a1_config import ALL_VARIANTS
-
 
 VARIANT_LABELS = {
     "mutation_only": "Mutation only",
@@ -25,31 +19,25 @@ VARIANT_COLORS = {
     "random_search": "tab:green",
 }
 
-
 def load_results(csv_path: Path) -> list[dict[str, str]]:
-    """Read experiment rows from CSV."""
     if not csv_path.exists():
         raise FileNotFoundError(f"Results file not found: {csv_path}")
     with csv_path.open(newline="", encoding="utf-8") as file:
         return list(csv.DictReader(file))
 
-
 def aggregate_metric(
     rows: list[dict[str, str]],
     metric: str,
 ) -> dict[str, dict[int, tuple[float, float]]]:
-    """Compute mean and population SD across seeds at every generation."""
     grouped: dict[tuple[str, int], list[float]] = defaultdict(list)
     for row in rows:
         grouped[(row["variant"], int(row["generation"]))].append(
             float(row[metric]),
         )
-
     aggregated: dict[str, dict[int, tuple[float, float]]] = defaultdict(dict)
     for (variant, generation), values in grouped.items():
         aggregated[variant][generation] = (fmean(values), pstdev(values))
     return aggregated
-
 
 def plot_metric(
     rows: list[dict[str, str]],
@@ -58,10 +46,8 @@ def plot_metric(
     ylabel: str,
     output_path: Path,
 ) -> None:
-    """Plot cross-run mean with a shaded plus/minus-one-SD band."""
     aggregated = aggregate_metric(rows, metric)
     plt.figure(figsize=(8, 5))
-
     for variant in ALL_VARIANTS:
         data = aggregated.get(variant)
         if not data:
@@ -90,9 +76,7 @@ def plot_metric(
     plt.savefig(output_path, dpi=300)
     plt.close()
 
-
 def get_final_rows(rows: list[dict[str, str]]) -> list[dict[str, str]]:
-    """Keep the latest row for each variant and seed."""
     latest: dict[tuple[str, int], dict[str, str]] = {}
     for row in rows:
         key = (row["variant"], int(row["seed"]))
@@ -102,9 +86,7 @@ def get_final_rows(rows: list[dict[str, str]]) -> list[dict[str, str]]:
             latest[key] = row
     return list(latest.values())
 
-
 def write_final_summary(rows: list[dict[str, str]], output_path: Path) -> None:
-    """Write and print final-best descriptive statistics per method."""
     final_rows = get_final_rows(rows)
     summaries: list[dict[str, Any]] = []
 
@@ -148,13 +130,10 @@ def write_final_summary(rows: list[dict[str, str]], output_path: Path) -> None:
             f"{summary['std_final_best_fitness']:.4f}",
         )
 
-
 def main() -> None:
-    """Generate three figures and one final summary CSV."""
     parser = argparse.ArgumentParser(description="Plot Assignment 1 results.")
     parser.add_argument("csv_path", type=Path, help="Path to results.csv")
     args = parser.parse_args()
-
     rows = load_results(args.csv_path)
     output_dir = args.csv_path.parent
     plot_metric(
@@ -180,7 +159,6 @@ def main() -> None:
     )
     write_final_summary(rows, output_dir / "final_summary.csv")
     print(f"Plots and summary saved in: {output_dir}")
-
 
 if __name__ == "__main__":
     main()

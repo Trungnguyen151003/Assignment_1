@@ -1,7 +1,4 @@
-"""Configuration shared by all Assignment 1 experiments."""
-
 from pathlib import Path
-
 
 HERE = Path(__file__).parent
 TARGET_DIR = HERE / "target_bodies"
@@ -40,7 +37,5 @@ CSV_FIELDS = [
     "best_body_size",
 ]
 
-
 def evaluation_budget() -> int:
-    """Return the number of fitness evaluations in one complete EA run."""
     return POPULATION_SIZE + GENERATIONS * POPULATION_SIZE
