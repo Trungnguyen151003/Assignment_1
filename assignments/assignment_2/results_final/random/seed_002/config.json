@@ -1,0 +1,33 @@
+{
+  "adaptation_tau": 0.051298917604257706,
+  "evaluation_budget": 1620,
+  "fixed_sigma": 0.1,
+  "generations": 80,
+  "initial_weight_std": 0.5,
+  "network": {
+    "clock_period": 1.5,
+    "hidden_size": 8,
+    "joint_count": 6,
+    "velocity_scale": 5.0
+  },
+  "offspring_count": 20,
+  "population_size": 20,
+  "seed": 2,
+  "sigma_max": 1.0,
+  "sigma_min": 0.005,
+  "simulation_duration": 5.0,
+  "spawn_position": [
+    0.0,
+    0.0,
+    0.1
+  ],
+  "target_position": [
+    2.0,
+    0.0,
+    0.1
+  ],
+  "tournament_size": 3,
+  "variant": "random",
+  "weight_max": 3.0,
+  "weight_min": -3.0
+}

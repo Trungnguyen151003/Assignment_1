@@ -1,0 +1,99 @@
+{
+  "convergence_auc_paired_test": {
+    "adaptive_mean": 1.7107084890554576,
+    "difference_definition": "adaptive_minus_fixed; negative favours adaptive",
+    "fixed_mean": 1.699164395890997,
+    "mean_paired_difference": 0.011544093164460456,
+    "median_paired_difference": -0.004879054790806636,
+    "n": 15,
+    "paired_difference_95pct_bootstrap_ci": [
+      -0.021129499698785897,
+      0.04883429447154039
+    ],
+    "paired_seeds": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "two_sided_paired_permutation_p": 0.56207275390625
+  },
+  "descriptive": {
+    "adaptive": {
+      "auc_mean": 1.7107084890554576,
+      "auc_sample_sd": 0.06660859540916428,
+      "final_max": 1.7523080943566887,
+      "final_mean": 1.6394916884552988,
+      "final_median": 1.6516390702086807,
+      "final_min": 1.4958721282951142,
+      "final_sample_sd": 0.0895835221723652,
+      "n": 15
+    },
+    "fixed": {
+      "auc_mean": 1.699164395890997,
+      "auc_sample_sd": 0.07570802379675529,
+      "final_max": 1.7645195835527185,
+      "final_mean": 1.6150326964302575,
+      "final_median": 1.6018332818447936,
+      "final_min": 1.4877800497804776,
+      "final_sample_sd": 0.09687640545815845,
+      "n": 15
+    },
+    "random": {
+      "auc_mean": 1.8554045745196646,
+      "auc_sample_sd": 0.020777517491154227,
+      "final_max": 1.869944003326784,
+      "final_mean": 1.8313285238946155,
+      "final_median": 1.8249654546878902,
+      "final_min": 1.7999814473154523,
+      "final_sample_sd": 0.017851468265348266,
+      "n": 15
+    }
+  },
+  "final_fitness_paired_test": {
+    "adaptive_mean": 1.6394916884552988,
+    "difference_definition": "adaptive_minus_fixed; negative favours adaptive",
+    "fixed_mean": 1.6150326964302575,
+    "mean_paired_difference": 0.024458992025041433,
+    "median_paired_difference": -0.014346994028685778,
+    "n": 15,
+    "paired_difference_95pct_bootstrap_ci": [
+      -0.01534930736312583,
+      0.06875430902936738
+    ],
+    "paired_seeds": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "two_sided_paired_permutation_p": 0.29571533203125
+  },
+  "notes": [
+    "The independent experimental unit is one seeded run.",
+    "Generation-level observations are not treated as independent samples.",
+    "Final fitness is the primary outcome; normalized AUC is the convergence outcome."
+  ]
+}

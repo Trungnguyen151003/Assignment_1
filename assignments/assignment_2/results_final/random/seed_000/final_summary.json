@@ -1,0 +1,24 @@
+{
+  "best_diagnostics": {
+    "final_position": [
+      0.18133582682550603,
+      -0.07044261861019582,
+      0.07649240332219337
+    ],
+    "initial_position": [
+      0.0,
+      0.0,
+      0.085
+    ],
+    "minimum_core_height": 0.07468462423440793,
+    "origin": "random",
+    "sigma": 0.10000000000000002,
+    "total_control_effort": 23.325094304643926,
+    "variant": "random"
+  },
+  "best_fitness": 1.8200278946502788,
+  "best_sigma": 0.10000000000000002,
+  "evaluations": 1620,
+  "seed": 0,
+  "variant": "random"
+}
