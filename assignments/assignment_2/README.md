@@ -84,8 +84,7 @@ uv run python -m assignments.assignment_2.a2_analyse \
 
 ### 3. Final experiment
 
-After fixing all parameters, run the final experiment with ten independent
-seeds that were not used in the pilot:
+After fixing all parameters, run the final experiment with fifteen independent seeds that were not used in the pilot.
 
 ```bash
 uv run python -m assignments.assignment_2.a2_run_experiments \
@@ -103,8 +102,8 @@ uv run python -m assignments.assignment_2.a2_run_experiments \
 
 The evaluation budget for one run is
 `population_size + generations * offspring_count`, which is
-`20 + 30 * 20 = 620` evaluations here. The complete final experiment performs
-`3 variants * 10 seeds * 620 = 18,600` simulations and may take a long time.
+`20 + 80 * 20 = 1620` evaluations here. The complete final experiment performs
+`3 variants * 15 seeds * 1620 = 72,900` simulations and may take a long time.
 
 Analyse the final results with:
 
