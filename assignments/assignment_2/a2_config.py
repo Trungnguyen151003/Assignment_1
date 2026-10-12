@@ -43,11 +43,11 @@ class NetworkSpec:
 class ExperimentConfig:
     """All choices held fixed across the experimental variants."""
 
-    population_size: int = 50
-    offspring_count: int = 50
-    generations: int = 150
+    population_size: int = 20
+    offspring_count: int = 20
+    generations: int = 80
     tournament_size: int = 3
-    simulation_duration: float = 15.0
+    simulation_duration: float = 5.0
     spawn_position: tuple[float, float, float] = (0.0, 0.0, 0.1)
     target_position: tuple[float, float, float] = (2.0, 0.0, 0.1)
     initial_weight_std: float = 0.5
